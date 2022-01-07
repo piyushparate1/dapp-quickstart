@@ -38,14 +38,6 @@
       "last 1 safari version"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/piyushparate1/dapp-quickstart.git"
-  },
   "author": "Piyush Parate (piyushparate1@gmail.com)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/piyushparate1/dapp-quickstart/issues"
-  },
-  "homepage": "https://github.com/piyushparate1/dapp-quickstart#readme"
+  "license": "ISC"
 }
