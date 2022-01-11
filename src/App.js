@@ -19,9 +19,8 @@ import { Anchor } from 'react-bootstrap';
 function App(props) {
 
   const [web3, setWeb3] = useState();
-  const [accounts, setAccounts] = useState();
+  const [accounts, setAccounts] = useState([]);
   const [contract, setContract] = useState();
-  const [message, setMessage] = useState("...");
 
   useEffect(() => {
     const init = async () => {
@@ -64,10 +63,13 @@ function App(props) {
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>
             </Nav>
-            <Nav>
-              <Nav.Link>Link#1</Nav.Link>
-              <Nav.Link>Link#2</Nav.Link>
-            </Nav>
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text>
+                <span>
+                  {accounts[0]}
+                </span>
+              </Navbar.Text>
+            </Navbar.Collapse>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -76,10 +78,10 @@ function App(props) {
 
         <Container className="p-3">
           <Container className="p-5 mb-4 bg-light rounded-3">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-              </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
           </Container>
         </Container>
 
@@ -87,7 +89,9 @@ function App(props) {
 
       <Navbar bg="light" variant="light" fixed="bottom">
         <Container>
-          <Navbar.Brand href="#home">DApp - Quickstart template by Piyush Parate (<a href='mailto:piyushparate1@gmail.com'>piyushparate1@gmail.com</a>)</Navbar.Brand>
+          <Navbar.Text>
+            <span>DApp - Quickstart template by Piyush Parate</span>
+          </Navbar.Text>
           <ButtonGroup size="sm">
             <Anchor href='mailto:piyushparate1@gmail.com' className='btn' target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-envelope-fill" viewBox="0 0 16 16">
