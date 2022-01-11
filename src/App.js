@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import Web3 from "web3";
 
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -9,6 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import About from './components/about';
 import Home from './components/home';
+import MetamaskConfigGuide from './components/metamask-config-guide';
 import Web3Svc from './services/Web3Svc';
 import AppContext from './contexts/AppContext';
 import HelloWorldContract from './contracts/HelloWorld.json';
@@ -18,14 +18,16 @@ import { Anchor } from 'react-bootstrap';
 
 function App(props) {
 
-  const [web3, setWeb3] = useState();
+  const [web3, setWeb3] = useState(undefined);
   const [accounts, setAccounts] = useState([]);
-  const [contract, setContract] = useState();
+  const [contract, setContract] = useState(undefined);
 
   useEffect(() => {
     const init = async () => {
 
       const web3 = await Web3Svc();
+      if (!web3) return;
+
       const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = HelloWorldContract.networks[networkId];
@@ -38,14 +40,33 @@ function App(props) {
       setContract(contract);
 
       console.log("Init");
+
     };
 
-    window.ethereum.on('accountsChanged', ((e) => {
+    window.ethereum && window.ethereum.on('accountsChanged', ((e) => {
       init();
     }));
 
     init();
   }, []);
+
+  function ConditionalRoutes(props) {
+    if (props.anonymous == true) {
+      return (
+        <Routes>
+          <Route path="*" element={<MetamaskConfigGuide />} />
+        </Routes>
+      );
+    }
+    else {
+      return (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      );
+    }
+  };
 
   return (
     <MemoryRouter>
@@ -78,10 +99,7 @@ function App(props) {
 
         <Container className="p-3">
           <Container className="p-5 mb-4 bg-light rounded-3">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-            </Routes>
+            <ConditionalRoutes anonymous={!web3} />
           </Container>
         </Container>
 

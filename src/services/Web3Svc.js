@@ -7,6 +7,7 @@ async function Web3Svc() {
             await window.ethereum.enable();
             return (web3);
         } catch (error) {
+            return error;
         }
     }
     // Legacy dapp browsers...
@@ -18,6 +19,7 @@ async function Web3Svc() {
     else {
         const provider = new Web3.providers.HttpProvider("http://127.0.0.1:7545");
         const web3 = new Web3(provider);
+        return null;
         return (web3);
     }
 }
