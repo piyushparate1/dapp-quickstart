@@ -8,7 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import About from './components/about';
 import Home from './components/home';
-import MetamaskConfigGuide from './components/metamask-config-guide';
+import Web3Setup from './components/web3setup';
 import Web3Svc from './services/Web3Svc';
 import AppContext from './contexts/AppContext';
 import HelloWorldContract from './contracts/HelloWorld.json';
@@ -21,6 +21,8 @@ function App(props) {
   const [web3, setWeb3] = useState(undefined);
   const [accounts, setAccounts] = useState([]);
   const [contract, setContract] = useState(undefined);
+
+  const appName = "DApp quickstart";
 
   useEffect(() => {
     const init = async () => {
@@ -54,7 +56,7 @@ function App(props) {
     if (props.anonymous == true) {
       return (
         <Routes>
-          <Route path="*" element={<MetamaskConfigGuide />} />
+          <Route path="*" element={<Web3Setup />} />
         </Routes>
       );
     }
@@ -73,7 +75,7 @@ function App(props) {
 
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container fluid>
-          <Navbar.Brand href="#">DApp - Quickstart</Navbar.Brand>
+          <Navbar.Brand href="#">{appName}</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -108,7 +110,7 @@ function App(props) {
       <Navbar bg="light" variant="light" fixed="bottom">
         <Container>
           <Navbar.Text>
-            <span>DApp - Quickstart template by Piyush Parate</span>
+            <span>{appName} template by Piyush Parate</span>
           </Navbar.Text>
           <ButtonGroup size="sm">
             <Anchor href='mailto:piyushparate1@gmail.com' className='btn' target="_blank">

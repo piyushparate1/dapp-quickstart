@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MetamaskConfigGuide() {
+function Web3setup() {
     return (
         <div>
             <span>Non-Ethereum browser detected. You should consider trying MetaMask!</span>
@@ -8,4 +8,4 @@ function MetamaskConfigGuide() {
     );
 };
 
-export default MetamaskConfigGuide;
+export default Web3setup;
