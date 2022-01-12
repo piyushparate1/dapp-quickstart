@@ -91,7 +91,7 @@ function App(props) {
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
                 <span>
-                  {accounts[0]} ({networkType})
+                {networkType} {accounts[0]}
                 </span>
               </Navbar.Text>
             </Navbar.Collapse>
