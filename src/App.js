@@ -25,17 +25,27 @@ function App(props) {
 
   useEffect(() => {
     const init = async () => {
-
       const web3 = await Web3Svc();
       if (!web3) return;
 
       const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = HelloWorldContract.networks[networkId];
+      if (!deployedNetwork) return;
       const contract = new web3.eth.Contract(
         HelloWorldContract.abi,
-        deployedNetwork.address);
+        deployedNetwork && deployedNetwork.address);
 
+      const networkType = await web3.eth.net.getNetworkType();
+      /*
+        "main" for main network
+        "morden" for the morden test network
+        "ropsten" for the morden test network
+        "private" for undetectable networks.
+      */
+      const chainId = await web3.eth.getChainId();
+
+      debugger;
       setWeb3(web3);
       setAccounts(accounts);
       setContract(contract);
@@ -52,7 +62,7 @@ function App(props) {
   }, []);
 
   function ConditionalRoutes(props) {
-    if (props.anonymous == true) {
+    if (props.anonymous === true) {
       return (
         <Routes>
           <Route path="*" element={<Web3Setup />} />
