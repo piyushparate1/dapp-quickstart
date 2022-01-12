@@ -20,6 +20,7 @@ function App(props) {
   const [web3, setWeb3] = useState(undefined);
   const [accounts, setAccounts] = useState([]);
   const [contract, setContract] = useState(undefined);
+  const [networkType, setNetworkType] = useState(undefined);
 
   const appName = "DApp quickstart";
 
@@ -30,28 +31,20 @@ function App(props) {
 
       const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
+      const networkType = await web3.eth.net.getNetworkType();
       const deployedNetwork = HelloWorldContract.networks[networkId];
-      if (!deployedNetwork) return;
+      
+      if (!deployedNetwork
+        || !deployedNetwork.address) return;
+
       const contract = new web3.eth.Contract(
         HelloWorldContract.abi,
         deployedNetwork && deployedNetwork.address);
 
-      const networkType = await web3.eth.net.getNetworkType();
-      /*
-        "main" for main network
-        "morden" for the morden test network
-        "ropsten" for the morden test network
-        "private" for undetectable networks.
-      */
-      const chainId = await web3.eth.getChainId();
-
-      debugger;
       setWeb3(web3);
       setAccounts(accounts);
       setContract(contract);
-
-      console.log("Init");
-
+      setNetworkType(networkType);
     };
 
     window.ethereum && window.ethereum.on('accountsChanged', ((e) => {
@@ -98,7 +91,7 @@ function App(props) {
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
                 <span>
-                  {accounts[0]}
+                  {accounts[0]} ({networkType})
                 </span>
               </Navbar.Text>
             </Navbar.Collapse>
