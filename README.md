@@ -72,3 +72,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Checksheet
+
+## TRUFFLE CHEETSHEET
+truffle migrate
+truffle migrate --reset
+truffle console
+var c = await CONTRACT.deployed()
+c.address
+truffle init
+truffle create contract YourContractName
+truffle create test YourTestName
+truffle create migration YourContractName
+truffle compile
+truffle migrate --reset
+truffle migrate --network rinkeby
+truffle develop
+
+## WEB3 CHEETSHEET
+var accounts = await web3.eth.getAccounts()
+var account = (await web3.eth.getAccounts())[0]
+
+## GANACHE CHEETSHEET
+ganache-cli
+
+## NPM CHEETSHEET
+npm init #add package file
+npx create-react-app my-app
+npm install @openzeppelin/contracts
+npm install react-bootstrap bootstrap@5.1.3
+npm start
