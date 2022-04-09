@@ -88,18 +88,18 @@ truffle create migration YourContractName\
 truffle compile\
 truffle migrate --reset\
 truffle migrate --network rinkeby\
-truffle develop\
+truffle develop
 
 ## WEB3 CHEETSHEET
-var accounts = await web3.eth.getAccounts()
+var accounts = await web3.eth.getAccounts()\
 var account = (await web3.eth.getAccounts())[0]
 
 ## GANACHE CHEETSHEET
 ganache-cli
 
 ## NPM CHEETSHEET
-npm init #add package file
-npx create-react-app my-app
-npm install @openzeppelin/contracts
-npm install react-bootstrap bootstrap@5.1.3
+npm init #add package file\
+npx create-react-app my-app\
+npm install @openzeppelin/contracts\
+npm install react-bootstrap bootstrap@5.1.3\
 npm start
