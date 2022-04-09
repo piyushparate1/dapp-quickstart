@@ -76,19 +76,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Checksheet
 
 ## TRUFFLE CHEETSHEET
-truffle migrate
-truffle migrate --reset
-truffle console
-var c = await CONTRACT.deployed()
-c.address
-truffle init
-truffle create contract YourContractName
-truffle create test YourTestName
-truffle create migration YourContractName
-truffle compile
-truffle migrate --reset
-truffle migrate --network rinkeby
-truffle develop
+truffle migrate\
+truffle migrate --reset\
+truffle console\
+var c = await CONTRACT.deployed()\
+c.address\
+truffle init\
+truffle create contract YourContractName\
+truffle create test YourTestName\
+truffle create migration YourContractName\
+truffle compile\
+truffle migrate --reset\
+truffle migrate --network rinkeby\
+truffle develop\
 
 ## WEB3 CHEETSHEET
 var accounts = await web3.eth.getAccounts()
